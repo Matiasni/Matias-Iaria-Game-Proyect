@@ -3,6 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(InputHandler))]
 [RequireComponent(typeof(NoMovement))]
 [RequireComponent(typeof(CharMovement))]
+[RequireComponent(typeof(CharacterInteraction))]
 public class Character : MonoBehaviour
 {
     [SerializeField, HideInInspector]
@@ -11,6 +12,8 @@ public class Character : MonoBehaviour
     private NoMovement characterMovementDisable;
     [SerializeField, HideInInspector]
     private CharMovement characterMovement;
+    [SerializeField, HideInInspector]
+    private CharacterInteraction characterInteraction;
 
     private BaseMovement currentMovementBehavior;
 
@@ -19,12 +22,15 @@ public class Character : MonoBehaviour
         inputs = GetComponent<InputHandler>();
         characterMovementDisable = GetComponent<NoMovement>();
         characterMovement = GetComponent<CharMovement>();
+        characterInteraction = GetComponent<CharacterInteraction>();
     }
 
     private void Awake()
     {
-        EnableMovement();
+        SetCharacterMovement(true);
+        characterInteraction.OnInteract += SetCharacterMovement;
         inputs.OnMovementInput += HandleMovementInput;
+        inputs.OnInteractInput += HandleInteract;
     }
 
     private void HandleMovementInput(Vector2 movementInput)
@@ -32,13 +38,16 @@ public class Character : MonoBehaviour
         currentMovementBehavior.Move(movementInput);
     }
 
-    public void StopMovement()
+    public void SetCharacterMovement(bool enable)
     {
-        currentMovementBehavior = characterMovementDisable;
+        if (enable)
+            currentMovementBehavior = characterMovement;
+        else
+            currentMovementBehavior = characterMovementDisable;
     }
 
-    public void EnableMovement()
+    private void HandleInteract()
     {
-        currentMovementBehavior = characterMovement;
+        characterInteraction.SetInteraction(true);
     }
 }

@@ -1,38 +1,15 @@
 using UnityEngine;
 
-public class NPCSeller : MonoBehaviour
+public class NPCSeller : MonoBehaviour, IInteractable
 {
     public GameObject shopUI;
 
-    private bool canInteract = false;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnInteractStart()
     {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = true;
-        }
+        Debug.Log("HI");
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnInteractEnd()
     {
-        if (collision.CompareTag("Player"))
-        {
-            canInteract = false;
-        }
-    }
 
-    private void Update()
-    {
-        if (canInteract && Input.GetKeyDown(KeyCode.E))
-        {
-            OpenShop();
-            Debug.Log("HI");
-        }
-    }
-
-    private void OpenShop()
-    {
-        shopUI.SetActive(true);
     }
 }

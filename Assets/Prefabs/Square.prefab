@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5781187555896066225}
   - component: {fileID: 5781187555896066224}
   - component: {fileID: 5781187555896066239}
+  - component: {fileID: 6027204094671465452}
+  - component: {fileID: 1178865433972892423}
   m_Layer: 0
   m_Name: Square
   m_TagString: Player
@@ -101,6 +103,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a14c0e130fc99b24a863ec4cf47abd03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputs: {fileID: 5781187555896066239}
+  characterMovementDisable: {fileID: 6027204094671465452}
+  characterMovement: {fileID: 5781187555896066224}
+  characterInteraction: {fileID: 1178865433972892423}
 --- !u!61 &5781187555896066227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +151,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!114 &5781187555896066224
@@ -174,4 +180,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b63905dc8096534798d92a23977f675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterMovement: {fileID: 5781187555896066224}
+--- !u!114 &6027204094671465452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781187555896066237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e912bd8b1559c64d89c5fc72729d927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5781187555896066225}
+--- !u!114 &1178865433972892423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5781187555896066237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b80876d08490d44b8fc7745406e828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

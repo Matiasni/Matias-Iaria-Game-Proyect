@@ -1,13 +1,14 @@
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject playerPrefab;
+    private Character playerPrefab;
     [SerializeField]
     private Transform spawnPoint;
 
-    private GameObject playerInstance;
+    private Character playerInstance;
 
     private void Start()
     {
