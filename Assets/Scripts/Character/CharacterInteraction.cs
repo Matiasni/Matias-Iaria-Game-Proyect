@@ -4,6 +4,7 @@ using System;
 public class CharacterInteraction : MonoBehaviour
 {
     public event Action<bool> OnInteract;
+    
 
     private bool canInteract;
     private bool interactableZone;
@@ -19,7 +20,7 @@ public class CharacterInteraction : MonoBehaviour
                 if (interactable != null)
                 {
                     canInteract = false;
-                    interactable.OnInteractStart();
+                    interactable.OnInteractStart(OnInteract);
                     OnInteract?.Invoke(false);
                 }
             }            

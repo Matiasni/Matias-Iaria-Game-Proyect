@@ -21,6 +21,6 @@ public class PlayerInputHandler : MonoBehaviour
     private void OpenMainMenu()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            OnMainMenu?.Invoke();     
+            OnMainMenu?.Invoke();
     }
 }

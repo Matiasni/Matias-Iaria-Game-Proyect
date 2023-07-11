@@ -2,7 +2,8 @@ using System.Collections.Generic;
 
 public class Inventory
 {
-    public List<Item> items = new List<Item>();
+    private List<Item> items = new List<Item>();
+    private float money = 5000;
 
     public void AddItem(Item item)
     {
@@ -25,5 +26,18 @@ public class Inventory
     public Item GetItem(int index)
     {       
         return items[index];
+    }
+
+    public void SpendMoney(float price)
+    {
+        money -= price;
+    }
+
+    public bool CanBuyItem(float price)
+    {
+        if (price > money)
+            return false;
+
+        return true;
     }
 }

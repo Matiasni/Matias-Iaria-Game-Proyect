@@ -1,5 +1,7 @@
+using System;
+
 public interface IInteractable
 {
-    void OnInteractStart();
+    void OnInteractStart(Action<bool> extraBehaviour);
     void OnInteractEnd();
 }

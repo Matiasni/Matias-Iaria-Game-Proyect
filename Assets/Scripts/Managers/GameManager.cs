@@ -24,4 +24,9 @@ public class GameManager : MonoBehaviour
     {
         return playerInstance;
     }
+
+    public void SpentMoney(float price)
+    {
+
+    }
 }
