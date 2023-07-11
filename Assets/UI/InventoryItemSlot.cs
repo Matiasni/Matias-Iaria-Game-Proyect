@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using TMPro;
 using UnityEngine.UI;
 
@@ -13,13 +14,19 @@ public class InventoryItemSlot : MonoBehaviour
     [SerializeField]
     private Image itemImage;
 
-    void Start()
+    public void SetItemName(string name)
     {
-        
+        itemNameText.text = name;
     }
 
-    void Update()
+    public void SetItemImage(Sprite sprite)
     {
-        
+        itemImage.sprite = sprite;
+        itemImage.gameObject.SetActive(true);
+    }
+
+    public void SetButtonAction(Action action)
+    {
+        slotButton.onClick.AddListener(delegate { action?.Invoke(); });
     }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,10 +22,5 @@ public class GameManager : MonoBehaviour
     public Character GetCharacter()
     {
         return playerInstance;
-    }
-
-    public void SpentMoney(float price)
-    {
-
     }
 }

@@ -56,4 +56,9 @@ public class Inventory
     {
         return items;
     }
+
+    public void EquipItem(Item item)
+    {
+        equipItem = item;
+    }
 }

@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour
     private PlayerInputHandler playerInputs;
 
     [SerializeField]
-    private GameObject inventoryUi;
+    private InventoryUI inventoryUi;
 
     [SerializeField]
     private GameObject gameExit;
@@ -20,13 +20,16 @@ public class MenuManager : MonoBehaviour
     void OpenInventory()
     {
         if (!gameExit.activeInHierarchy)
-            inventoryUi.SetActive(true);
+        {
+            inventoryUi.gameObject.SetActive(true);
+            inventoryUi.InventoryOpen();
+        }
     }
 
     void OpenMainMenu()
     {
-        if (inventoryUi.activeInHierarchy)
-            inventoryUi.SetActive(false);
+        if (inventoryUi.gameObject.activeInHierarchy)
+            inventoryUi.gameObject.SetActive(false);
         else
         {
             if (!gameExit.activeInHierarchy)

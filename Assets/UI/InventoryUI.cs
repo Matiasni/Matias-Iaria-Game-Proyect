@@ -1,41 +1,62 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField]
+    private GameManager gm;
+    [SerializeField]
     private InventoryItemSlot inventorySlot;
     [SerializeField]
     private InventoryItemSlot currentEquippedItem;
+    [SerializeField]
+    private Transform container;
 
-    //void Start()
-    //{
-    //    addSarasa.onClick.AddListener(delegate { gm.GetCharacter().GetInventory().AddItem(new Item("Sarasa ")); UpdateUI(); });
+    private List<InventoryItemSlot> slotsCreated = new List<InventoryItemSlot>();
 
-    //    addPotion.onClick.AddListener(delegate { gm.GetCharacter().GetInventory().AddItem(new Item("Potion ")); UpdateUI(); });
+    public void InventoryOpen()
+    {
+        var playerInventory = gm.GetCharacter().GetInventory();
 
-    //    removeItem.onClick.AddListener(delegate { gm.GetCharacter().GetInventory().RemoveItem(); UpdateUI(); });
-    //}
+        foreach (var slot in slotsCreated)
+        {
+            Destroy(slot.gameObject);
+        }
 
-    //string textFull;
-    //void UpdateUI()
-    //{
-    //    textFull = "";
+        slotsCreated = new List<InventoryItemSlot>();
 
-    //    Debug.Log(gm.GetCharacter());
-    //    if (gm.GetCharacter().GetInventory().items.Count > 0)
-    //    {
-    //        foreach (var item in gm.GetCharacter().GetInventory().items)
-    //        {
-    //            textFull += item.itemName;
-    //        }
-    //    }
-        
+        if (playerInventory.InventoryItems().Count <= 0)
+            return;
 
-    //    text.text = textFull;
-    //}
+        foreach (var item in playerInventory.InventoryItems())
+        {
+            if (item != playerInventory.ItemEquiped())
+            {
+                var instance = CreateItemSlot(item.itemName, item.icon, delegate { EquipItemFunction(item); });
+                slotsCreated.Add(instance);
+            }
+            else
+            {
+                currentEquippedItem.SetItemName(item.itemName);
+                currentEquippedItem.SetItemImage(item.icon);
+            }
+        }
+    }
 
+    public InventoryItemSlot CreateItemSlot(string name, Sprite sprite, Action action)
+    {
+        var instance = Instantiate(inventorySlot, container);
+        instance.SetItemName(name);
+        instance.SetItemImage(sprite);
+        instance.SetButtonAction(action);
+
+        return instance;
+    }
+
+    public void EquipItemFunction(Item item)
+    {
+        gm.GetCharacter().GetInventory().EquipItem(item);
+        InventoryOpen();
+    }
 }

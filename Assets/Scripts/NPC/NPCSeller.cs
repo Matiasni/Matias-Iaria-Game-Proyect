@@ -64,7 +64,7 @@ public class NPCSeller : MonoBehaviour, IInteractable
         {
             gm.GetCharacter().GetInventory().SpendMoney(itemBought.itemPrice);
             gm.GetCharacter().GetInventory().AddItem(itemBought);
-            shop.SetPlayerGold(gm.GetCharacter().GetInventory().GetPlayerGold().ToString("F0"));            
+            shop.SetPlayerGold(gm.GetCharacter().GetInventory().GetPlayerGold().ToString("F0"));
             availableItems.Remove(itemBought);
             SetBuyItems();
         }        
