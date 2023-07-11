@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     private Character playerInstance;
 
-    private void Start()
+    private void Awake()
     {
         SpawnPlayer();
     }
@@ -18,5 +18,10 @@ public class GameManager : MonoBehaviour
     private void SpawnPlayer()
     {
         playerInstance = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+    }
+
+    public Character GetCharacter()
+    {
+        return playerInstance;
     }
 }

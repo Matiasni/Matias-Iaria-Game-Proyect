@@ -20,16 +20,9 @@ public class InputHandler : MonoBehaviour
         OnMovementInput?.Invoke(new Vector2(horizontalInput, verticalInput));
     }
 
-    bool inteaction;
     private void Interact()
     {
-        float interactAxis = Input.GetAxis("Interact");
-        if (interactAxis > 0f && !inteaction)
-        {
-            inteaction = true;
+        if (Input.GetKeyDown(KeyCode.E))
             OnInteractInput?.Invoke();
-        }
-        else if(interactAxis <= 0f)
-            inteaction = false;
     }
 }

@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
 
     private BaseMovement currentMovementBehavior;
 
+    private Inventory charInventory = new Inventory();
+
     private void OnValidate()
     {
         inputs = GetComponent<InputHandler>();
@@ -49,5 +51,10 @@ public class Character : MonoBehaviour
     private void HandleInteract()
     {
         characterInteraction.SetInteraction(true);
+    }
+
+    public Inventory GetInventory()
+    {
+        return charInventory;
     }
 }
