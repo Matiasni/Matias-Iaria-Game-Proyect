@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(NoMovement))]
 [RequireComponent(typeof(CharMovement))]
 [RequireComponent(typeof(CharacterInteraction))]
+[RequireComponent(typeof(CharacterAnimationController))]
 public class Character : MonoBehaviour
 {
     [SerializeField, HideInInspector]
@@ -14,6 +15,8 @@ public class Character : MonoBehaviour
     private CharMovement characterMovement;
     [SerializeField, HideInInspector]
     private CharacterInteraction characterInteraction;
+    [SerializeField, HideInInspector]
+    private CharacterAnimationController charAnim;
 
     private BaseMovement currentMovementBehavior;
 
@@ -21,6 +24,7 @@ public class Character : MonoBehaviour
 
     private void OnValidate()
     {
+        charAnim = GetComponent<CharacterAnimationController>();
         inputs = GetComponent<InputHandler>();
         characterMovementDisable = GetComponent<NoMovement>();
         characterMovement = GetComponent<CharMovement>();
@@ -32,6 +36,7 @@ public class Character : MonoBehaviour
         SetCharacterMovement(true);
         characterInteraction.OnInteract += SetCharacterMovement;
         inputs.OnMovementInput += HandleMovementInput;
+        inputs.OnMovementInput += charAnim.Move;
         inputs.OnInteractInput += HandleInteract;
     }
 
