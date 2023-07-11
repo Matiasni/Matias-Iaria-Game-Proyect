@@ -13,11 +13,23 @@ MonoBehaviour:
   m_Name: NPCList
   m_EditorClassIdentifier: 
   ItemsToSell:
-  - itemId: 
-    itemName: Golden Armor
-    itemPrice: 2000
-    icon: {fileID: 21300000, guid: 4ec80994280452f419eb84af7ea05d0d, type: 3}
-  - itemId: 
+  - itemId: Silver Armor
     itemName: Silver Armor
+    itemPrice: 3000
+    icon: {fileID: 21300000, guid: cd846cfdc8b2cd14db51e16937adaf8f, type: 3}
+  - itemId: Elf Armor
+    itemName: Elf Armor
+    itemPrice: 1000
+    icon: {fileID: 21300000, guid: 8ab8128d773b28643a23f368d07b0157, type: 3}
+  - itemId: Fire Armor
+    itemName: Fire Armor
     itemPrice: 2000
+    icon: {fileID: 21300000, guid: 6a083d35db1a39945a9083a4b6fc7bc2, type: 3}
+  - itemId: Ice Armor
+    itemName: Ice Armor
+    itemPrice: 2000
+    icon: {fileID: 21300000, guid: 66d89cb481aa7724bad3c93a63b0f8f4, type: 3}
+  - itemId: Gold Armor
+    itemName: Golden Armor
+    itemPrice: 4000
     icon: {fileID: 21300000, guid: 4ec80994280452f419eb84af7ea05d0d, type: 3}

@@ -14,8 +14,8 @@ public class InputHandler : MonoBehaviour
 
     private void Movement()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         OnMovementInput?.Invoke(new Vector2(horizontalInput, verticalInput));
     }

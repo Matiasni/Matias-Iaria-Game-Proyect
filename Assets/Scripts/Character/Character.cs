@@ -1,10 +1,12 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(InputHandler))]
 [RequireComponent(typeof(NoMovement))]
 [RequireComponent(typeof(CharMovement))]
 [RequireComponent(typeof(CharacterInteraction))]
 [RequireComponent(typeof(CharacterAnimationController))]
+[RequireComponent(typeof(SpawnEquipItem))]
 public class Character : MonoBehaviour
 {
     [SerializeField, HideInInspector]
@@ -17,6 +19,10 @@ public class Character : MonoBehaviour
     private CharacterInteraction characterInteraction;
     [SerializeField, HideInInspector]
     private CharacterAnimationController charAnim;
+    [SerializeField, HideInInspector]
+    private SpawnEquipItem itemSpawner;
+
+    private Action<Vector2> armorAnimation;
 
     private BaseMovement currentMovementBehavior;
 
@@ -24,6 +30,7 @@ public class Character : MonoBehaviour
 
     private void OnValidate()
     {
+        itemSpawner = GetComponent<SpawnEquipItem>();
         charAnim = GetComponent<CharacterAnimationController>();
         inputs = GetComponent<InputHandler>();
         characterMovementDisable = GetComponent<NoMovement>();
@@ -35,8 +42,9 @@ public class Character : MonoBehaviour
     {
         SetCharacterMovement(true);
         characterInteraction.OnInteract += SetCharacterMovement;
-        inputs.OnMovementInput += HandleMovementInput;
         inputs.OnMovementInput += charAnim.Move;
+        inputs.OnMovementInput += ExecuteAnimArmor;
+        inputs.OnMovementInput += HandleMovementInput;
         inputs.OnInteractInput += HandleInteract;
     }
 
@@ -61,5 +69,24 @@ public class Character : MonoBehaviour
     public Inventory GetInventory()
     {
         return charInventory;
+    }
+
+    private void ExecuteAnimArmor(Vector2 vector)
+    {
+        armorAnimation?.Invoke(vector);
+    }
+
+    private CharacterAnimationController currentArmor;
+    public void CharacterItemSpawn(string itemId)
+    {
+        if (currentArmor)
+        {
+            armorAnimation -= currentArmor.Move;
+            Destroy(currentArmor.gameObject);
+        }
+
+        currentArmor = itemSpawner.SpawnItem(itemId);
+
+        armorAnimation += currentArmor.Move;
     }
 }

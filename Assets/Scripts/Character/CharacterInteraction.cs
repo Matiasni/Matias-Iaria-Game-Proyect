@@ -3,8 +3,7 @@ using System;
 
 public class CharacterInteraction : MonoBehaviour
 {
-    public event Action<bool> OnInteract;
-    
+    public event Action<bool> OnInteract;    
 
     private bool canInteract;
     private bool interactableZone;

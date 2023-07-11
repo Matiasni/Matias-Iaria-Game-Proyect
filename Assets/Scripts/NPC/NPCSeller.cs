@@ -18,7 +18,6 @@ public class NPCSeller : MonoBehaviour, IInteractable
     private List<Item> availableItems = new List<Item>();
     private List<SellingItemSlot> slotsCreated = new List<SellingItemSlot>();
 
-
     private void Awake()
     {
         foreach (var item in listItems.ItemsToSell)

@@ -23,4 +23,9 @@ public class GameManager : MonoBehaviour
     {
         return playerInstance;
     }
+
+    public void SpawnItem(Item itemInfo)
+    {
+        playerInstance.CharacterItemSpawn(itemInfo.itemId);
+    }
 }

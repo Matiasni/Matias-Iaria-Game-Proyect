@@ -56,6 +56,7 @@ public class InventoryUI : MonoBehaviour
 
     public void EquipItemFunction(Item item)
     {
+        gm.SpawnItem(item);
         gm.GetCharacter().GetInventory().EquipItem(item);
         InventoryOpen();
     }

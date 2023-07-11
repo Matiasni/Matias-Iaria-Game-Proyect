@@ -13,7 +13,6 @@ public class CharacterAnimationController : MonoBehaviour
 
     public void Move(Vector2 movementInput)
     {
-        Debug.Log(movementInput.x);
         anim.SetFloat("X", movementInput.x);
         anim.SetFloat("Y", movementInput.y);
     }
