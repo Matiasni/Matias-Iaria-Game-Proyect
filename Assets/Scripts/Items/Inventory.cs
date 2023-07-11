@@ -2,6 +2,7 @@ using System.Collections.Generic;
 
 public class Inventory
 {
+    private Item equipItem;
     private List<Item> items = new List<Item>();
     private float money = 5000;
 
@@ -39,5 +40,20 @@ public class Inventory
             return false;
 
         return true;
+    }
+
+    public float GetPlayerGold()
+    {
+        return money;
+    }
+
+    public Item ItemEquiped()
+    {
+        return equipItem;
+    }
+
+    public List<Item> InventoryItems()
+    {
+        return items;
     }
 }

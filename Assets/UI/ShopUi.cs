@@ -18,6 +18,9 @@ public class ShopUi : MonoBehaviour
     [SerializeField]
     private GameObject container;
 
+    [SerializeField]
+    private TextMeshProUGUI playerGold;
+
     void Start()
     {
         SetBuy();
@@ -46,5 +49,10 @@ public class ShopUi : MonoBehaviour
         instance.SetButtonAction(action);
 
         return instance;
+    }
+
+    public void SetPlayerGold(string playerGoldText)
+    {
+        playerGold.text = playerGoldText;
     }
 }
